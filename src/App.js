@@ -1,25 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+import "./styles.css";
+import { useEffect, useState } from "react";
+import ProductList from "./component/ProductList";
+import AddProduct from "./component/AddProduct";
 
-function App() {
+export default function App() {
+  const [products, setProducts] = useState([]);
+  const [search, setSearch] = useState("");
+  let dummyproducts = [
+    {
+      id: 1,
+      name: "apple",
+      category: "fruit",
+      price: 100,
+    },
+    {
+      id: 2,
+      name: "mobile",
+      category: "electronics",
+      price: 10000,
+    },
+  ];
+
+  useEffect(() => {
+    setProducts(dummyproducts);
+  }, []);
+
+  let filteredProducts = search
+    ? products.filter((productName) => productName.name === search)
+    : products;
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <input
+        type="text"
+        placeholder="search"
+        onChange={(e) => setSearch(e.target.value)}
+        value={search}
+      />
+      <AddProduct products={filteredProducts} setProducts={setProducts} />
+      <ProductList products={filteredProducts} setProducts={setProducts} />
     </div>
   );
 }
-
-export default App;
