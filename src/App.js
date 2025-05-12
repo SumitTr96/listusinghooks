@@ -1,5 +1,5 @@
 import "./styles.css";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import ProductList from "./component/ProductList";
 import AddProduct from "./component/AddProduct";
 
@@ -25,9 +25,11 @@ export default function App() {
     setProducts(dummyproducts);
   }, []);
 
-  let filteredProducts = search
+  let filteredProducts = useMemo(()=>{
+  return search
     ? products.filter((productName) => productName.name === search)
     : products;
+},[search, products])
 
   return (
     <div className="App">

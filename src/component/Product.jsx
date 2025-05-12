@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 
-const Product = (prop) => {
+const Product = React.memo((prop) => {
   let { product, deleteProduct } = prop;
 
   return (
@@ -20,5 +20,5 @@ const Product = (prop) => {
       </div>
     </>
   );
-};
+});
 export default Product;

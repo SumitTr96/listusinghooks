@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function AddProduct(props) {
+const AddProduct=React.memo((props)=> {
   let { products, setProducts } = props;
   const [name, setName] = useState("");
   const [category, setCategory] = useState("");
@@ -47,5 +47,5 @@ function AddProduct(props) {
       <button onClick={addProduct}>Add</button>
     </div>
   );
-}
+})
 export default AddProduct;

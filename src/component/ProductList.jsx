@@ -1,7 +1,7 @@
 import React from "react";
 import Product from "./Product";
 
-function ProductList(prop) {
+const ProductList=React.memo((prop)=> {
   let { products, setProducts } = prop;
 
   let deleteProduct = (deleteProductId) => {
@@ -20,5 +20,5 @@ function ProductList(prop) {
       </div>
     </>
   );
-}
+});
 export default ProductList;
